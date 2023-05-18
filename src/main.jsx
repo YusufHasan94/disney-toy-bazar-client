@@ -10,6 +10,7 @@ import Home from './Pages/Home/Home/Home';
 import Login from './Pages/Login/login';
 import Registration from './Pages/Registration/Registration';
 import AuthProvider from './providers/AuthProvider';
+import '@smastrom/react-rating/style.css'
 
 const router = createBrowserRouter([
   {
