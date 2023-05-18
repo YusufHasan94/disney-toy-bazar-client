@@ -1,14 +1,34 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
+import { FaUserAlt } from "react-icons/fa";
+import ActiveLink from "./ActiveLink";
+import 'react-tooltip/dist/react-tooltip.css';
+import { Tooltip } from 'react-tooltip'
 
 const Navbar = () => {
+    const {user, logOut} = useContext(AuthContext);
+    console.log(user);
+
+    const logOutUser = ()=>{
+        logOut()
+        .then()
+        .catch(error => console.log(error))
+    }
+
     const navItems =
     <>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/">All Toys</Link></li>
-        <li><Link to="/">My Toys</Link></li>
-        <li><Link to="/">Add A Toy</Link></li>
-        <li><Link to="/">Blogs</Link></li>
+        <li><ActiveLink to="/">Home</ActiveLink></li>
+        <li><ActiveLink to="/all-toys">All Toys</ActiveLink></li>
+        <li><ActiveLink to="/blogs">Blogs</ActiveLink></li>
+        {
+            user?
+            <>  
+                <li><ActiveLink to="/my-toys">My Toys</ActiveLink></li>
+                <li><ActiveLink to="/add-toy">Add A Toy</ActiveLink></li>
+            </> : ""
+        }
     </>
     return (
         <div className="navbar bg-base-100">
@@ -32,8 +52,20 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <img src="https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=826&t=st=1684339559~exp=1684340159~hmac=e68bf9e559b83944b8f0fff6e530927752566f03435244700a56d410dc0f15bc" alt="" className="w-12 mr-4 rounded-full border-violet-800 border-2"/>
-                <button className="btn btn-primary"><Link to="/login">Log In</Link></button>
+                {
+                    user?<>
+                        {
+                            user.photoURL? 
+                            <img src={user.photoURL} alt="" 
+                            className="w-12 mr-4 rounded-full border-violet-800 border-2" 
+                            data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName?user.displayName : ''}/>
+                            : <FaUserAlt className="text-3xl mr-4"></FaUserAlt>
+                        }
+                        <button className="btn btn-primary"><Link to="/login" onClick={logOutUser}>Log Out</Link></button>
+                    </>:
+                    <button className="btn btn-primary"><Link to="/login">Log In</Link></button>
+                }
+                <Tooltip id="my-tooltip"/>
             </div>
         </div>
     );
