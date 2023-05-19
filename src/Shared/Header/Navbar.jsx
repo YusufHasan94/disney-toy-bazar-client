@@ -26,9 +26,9 @@ const Navbar = () => {
             user?
             <>  
                 <li><ActiveLink to="/my-toys">My Toys</ActiveLink></li>
+                <li><ActiveLink to="/add-toys">Add A Toy</ActiveLink></li>
             </> : ""
         }
-        <li><ActiveLink to="/add-toys">Add A Toy</ActiveLink></li>
     </>
     return (
         <div className="navbar bg-base-10 my-2 bg-violet-100 rounded-xl">

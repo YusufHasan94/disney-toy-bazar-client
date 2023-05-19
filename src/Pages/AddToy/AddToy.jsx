@@ -2,13 +2,28 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const AddToy = () => {
+    const handleAddToy = event =>{
+        event.preventDefault();
+        const form = event.target;
+        const name = form.name.value;
+        const sellerName = form.sellerName.value;
+        const email = form.email.value;
+        const photoURL = form.photoURL.value;
+        const subCategory = form.subCategory.value;
+        const Price = form.Price.value;
+        const Rating = form.Rating.value;
+        const availableQuantity = form.availableQuantity.value;
+        const detailsDescription = form.detailsDescription.value;
+        const user = {name, sellerName, email, photoURL, subCategory, Price, Rating, availableQuantity, detailsDescription};
+        console.log(user);
+    }
     return (
         <div className='my-8'>
             <div>
                 <h1 className='text-center text-4xl font-semibold'>Add Beautiful Toys Here</h1>
             </div>
-            <div className='w-1/2 mx-auto my-4'>
-                <form>
+            <div className='md:w-1/2 mx-auto my-4 p-4'>
+                <form onSubmit={handleAddToy}>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-xl">Name</span>
@@ -19,13 +34,13 @@ const AddToy = () => {
                         <label className="label">
                             <span className="label-text text-xl">Seller Name</span>
                         </label>
-                        <input type="text" name='seller_name' placeholder="Seller Name" required className="input input-bordered" />
+                        <input type="text" name='sellerName' placeholder="Seller Name" required className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-xl">Email</span>
+                            <span className="label-text text-xl">Seller Email</span>
                         </label>
-                        <input type="text" name='email' placeholder="email" required className="input input-bordered" />
+                        <input type="email" name='email' placeholder="Email" required className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
@@ -37,7 +52,7 @@ const AddToy = () => {
                         <label className="label">
                             <span className="label-text text-xl">Sub-category</span>
                         </label>
-                        <select name="sub_category" id="" className='input input-bordered'>
+                        <select name="subCategory" id="" className='input input-bordered'>
                             <option value="Fire Truck">Fire Truck</option>
                             <option value="Fire Truck">Racing Car</option>
                             <option value="Fire Truck">Ambulance</option>
@@ -47,25 +62,25 @@ const AddToy = () => {
                         <label className="label">
                             <span className="label-text text-xl">Price</span>
                         </label>
-                        <input type="password" name='Price' placeholder="Price" required className="input input-bordered" />
+                        <input type="number" name='Price' placeholder="Price" required className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-xl">Rating</span>
                         </label>
-                        <input type="password" name='Rating' placeholder="5/5" required className="input input-bordered" />
+                        <input type="number" name='Rating' placeholder="5/5" required className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-xl">Available Quantity</span>
                         </label>
-                        <input type="password" name='Available_quantity' placeholder="Available Quantity" required className="input input-bordered" />
+                        <input type="number" name='availableQuantity' placeholder="Available Quantity" required className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-xl">Detail Description</span>
                         </label>
-                        <textarea name="" id="" cols="30" rows="5" required className="border-2 border-gray-300 rounded-xl p-2"></textarea>
+                        <textarea name="detailsDescription" id="" cols="30" rows="5" required className="border-2 border-gray-300 rounded-xl p-2"></textarea>
                     </div>
                     <div className="form-control mt-6">
                     <input type="submit" value="Submit" className='btn btn-primary'/>

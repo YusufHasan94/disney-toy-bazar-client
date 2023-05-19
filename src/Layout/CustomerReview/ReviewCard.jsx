@@ -1,5 +1,5 @@
 import React from 'react';
-import { Rating } from '@smastrom/react-rating'
+import { Rating } from '@smastrom/react-rating';
 
 const ReviewCard = ({review}) => {
     const {id, name, customer_review, rating, img} = review;
@@ -11,7 +11,7 @@ const ReviewCard = ({review}) => {
                 <p>{customer_review}</p>
                 <div className="card-actions justify-end">
                 <Rating
-                    style={{ maxWidth: 180 }}
+                    style={{ maxWidth: 100 }}
                     value={rating}
                     onChange={rating}
                 />

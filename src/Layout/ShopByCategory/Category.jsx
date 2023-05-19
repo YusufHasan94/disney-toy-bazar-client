@@ -16,19 +16,19 @@ const Category = () => {
                 <h1 className='text-center text-4xl font-semibold'>Shop By Category</h1>
             </div>
             <div className='flex justify-center my-8 w-full'>
-                <Tabs className="text-xl font-semibold text-center p-4 w-3/4"> 
+                <Tabs className="text-xl font-semibold text-center p-4"> 
                     <TabList >
                         {categories.map(tab => (
-                            <Tab>{tab.tab_title}</Tab>
+                            <Tab key={tab.id}>{tab.tab_title}</Tab>
                         ))}    
                     </TabList>
                     {
                         categories.map(tab=>(
-                            <TabPanel >
-                                <div className="grid grid-cols-2 justify-center gap-4 my-6">
+                            <TabPanel key={tab.id}>
+                                <div className="grid grid-cols-3 justify-center gap-4 my-6">
                                     {
                                         tab.subcategories.category.map(card=>(
-                                            <ToysCard  card={card}></ToysCard>
+                                            <ToysCard  key={tab.id} card={card}></ToysCard>
                                         ))
                                     }
                                 </div>
