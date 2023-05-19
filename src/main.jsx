@@ -12,6 +12,7 @@ import Registration from './Pages/Registration/Registration';
 import AuthProvider from './providers/AuthProvider';
 import '@smastrom/react-rating/style.css'
 import NotFound from './Pages/PageNotFound/NotFound';
+import AddToy from './Pages/AddToy/AddToy';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/registration",
         element: <Registration></Registration>
+      },
+      {
+        path: "/add-toys",
+        element: <AddToy></AddToy>
       }
     ]
   },
