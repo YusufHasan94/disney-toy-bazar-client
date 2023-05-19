@@ -11,6 +11,7 @@ import Login from './Pages/Login/login';
 import Registration from './Pages/Registration/Registration';
 import AuthProvider from './providers/AuthProvider';
 import '@smastrom/react-rating/style.css'
+import NotFound from './Pages/PageNotFound/NotFound';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: "*",
+    element: <NotFound></NotFound>
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(

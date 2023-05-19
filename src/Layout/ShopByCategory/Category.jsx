@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import ToysCard from './ToysCard';
 
 const Category = () => {
     const [categories, setCategories] = useState([]);
@@ -9,20 +10,39 @@ const Category = () => {
         .then(res => res.json())
         .then(data => setCategories(data))
     },[])
-    console.log(categories.subcategories);
+    const {id, tab_title, subcategories} = categories;
     return (
         <div className='my-4'>
             <div>
                 <h1 className='text-center text-4xl font-semibold'>Shop By Category</h1>
             </div>
-            <Tabs className="my-4 mx-8 flex flex-col items-center">
-                <TabList className="text-xl font-semibold mb-4">
-                    {categories.map(tab => <Tab key={tab.id}>{tab.tab_title}</Tab>)}
-                </TabList>
-                <TabPanel>
-
-                </TabPanel>
-            </Tabs>
+            <div className='flex justify-center my-8'>
+                <Tabs className="text-xl font-semibold"> 
+                    <TabList>
+                        {categories.map(category => (
+                            <Tab>{category.tab_title}</Tab>
+                        ))}    
+                    </TabList>            
+                    {categories.map(category =>(
+                        <TabPanel>
+                            <Tabs>
+                                <TabList>
+                                    {category.subcategories.map(subcategory=>(
+                                        <Tab>{subcategory.title}</Tab>
+                                    ))}
+                                </TabList>
+                                {category.subcategories.map(subcategory=>(
+                                    <TabPanel>
+                                        <div className="grid grid-cols-2 gap-4 my-4">
+                                            {subcategory.cards.map(card=> <ToysCard card={card}></ToysCard>)}
+                                        </div>
+                                    </TabPanel>
+                                ))}
+                            </Tabs>
+                        </TabPanel>
+                    ))}
+                </Tabs>
+            </div>
         </div>
     );
 };
