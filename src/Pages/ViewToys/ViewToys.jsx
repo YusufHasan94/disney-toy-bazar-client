@@ -11,10 +11,16 @@ const ViewToys = () => {
             setToys(data);
         })
     },[])
+    const handleDeleteToy = (_id)=>{
+        console.log("clicked on delete", _id);
+    }
+    const handleUpdateToy = (_id)=>{
+        console.log("clicked on update", _id);
+    }
     return (
-        <div>
+        <div className='my-8'>
             <div>
-                <h1>View ALL Toys Here!</h1>
+                <h1 className='text-center text-4xl font-semibold'>View ALL Toys Here!</h1>
             </div>
             <div>
             <div className="overflow-x-auto">
@@ -37,20 +43,20 @@ const ViewToys = () => {
                         </thead>
                         <tbody>
                             {toys.map(toy=>(
-                                <tr>
+                                <tr className=''>
                                     <td>{count++}</td>
                                     <td>{toy.name}</td>
                                     <td>{toy.sellerName}</td>
                                     <td>{toy.email}</td>
                                     <td><img src={toy.photoURL} className='w-28' alt="" /></td>
                                     <td>{toy.subCategory}</td>
-                                    <td>{toy.Price}</td>
-                                    <td>{toy.Rating}</td>
-                                    <td>{toy.availableQuantity}</td>
+                                    <td>{toy.Price} $</td>
+                                    <td>{toy.Rating}/5</td>
+                                    <td>{toy.availableQuantity} pec</td>
                                     <td>{toy.detailsDescription}</td>
                                     <td>
-                                        <button><FaEdit className='text-2xl mr-4'></FaEdit></button>
-                                        <button><FaBitbucket className='text-2xl mr-4'></FaBitbucket></button>
+                                        <button><FaEdit onClick={()=>handleUpdateToy(toy._id)} className='text-2xl mr-4'></FaEdit></button>
+                                        <button><FaBitbucket onClick={()=>handleDeleteToy(toy._id)} className='text-2xl mr-4'></FaBitbucket></button>
                                     </td>
                                 </tr>
                             ))}

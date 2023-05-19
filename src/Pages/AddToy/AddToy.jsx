@@ -19,23 +19,32 @@ const AddToy = () => {
         const newToys = {name, sellerName, email, photoURL, subCategory, Price, Rating, availableQuantity, detailsDescription};
         console.log(newToys);
 
-        fetch("http://localhost:5000/toys",{
-            method: "POST",
-            headers: {
-                'content-type':'application/json'
-            },
-            body: JSON.stringify(newToys)
-        })
-        .then(res=> res.json())
-        .then(data=>{
-            console.log(data);
-            if(data.insertedId){
-                console.log("success");
-            }
-        })
-        .catch(error => console.log(error.message));
+        if(parseFloat(Price)<0 || parseFloat(availableQuantity)<0){
+           console.log("No negative value allowed");
+            return;
+        }
+        else if(parseFloat(Rating)>5 || parseFloat(Rating)<0){
+            console.log("Rating must lies between 0-5");
+        }else{
+            fetch("http://localhost:5000/toys",{
+                method: "POST",
+                headers: {
+                    'content-type':'application/json'
+                },
+                body: JSON.stringify(newToys)
+            })
+            .then(res=> res.json())
+            .then(data=>{
+                console.log(data);
+                if(data.insertedId){
+                    console.log("success");
+                }
+            })
+            .catch(error => console.log(error.message));
+    
+            form.reset("");
+        }
         
-        form.reset("");
     }
     return (
         <div className='my-8'>
