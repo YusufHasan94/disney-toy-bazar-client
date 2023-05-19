@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 
 const AddToy = () => {
-    const {user,loading} = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     const handleAddToy = event =>{
         event.preventDefault();
         const form = event.target;

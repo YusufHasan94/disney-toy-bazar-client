@@ -16,6 +16,7 @@ import AddToy from './Pages/AddToy/AddToy';
 import Private from './Shared/Route/Private';
 import ToysDetails from './Pages/DetailsModal/ToysDetails';
 import ViewToys from './Pages/ViewToys/ViewToys';
+import ViewMyToys from './Pages/ViewMyToys/ViewMyToys';
 
 const router = createBrowserRouter([
   {
@@ -35,12 +36,16 @@ const router = createBrowserRouter([
         element: <Registration></Registration>
       },
       {
-        path: "/add-toys",
-        element: <AddToy></AddToy>
+        path: "/all-toys",
+        element: <ViewToys></ViewToys>
       },
       {
-        path: "/view-toys",
-        element: <ViewToys></ViewToys>
+        path: "/add-toys",
+        element: <Private><AddToy></AddToy></Private>
+      },
+      {
+        path: "/my-toys",
+        element: <Private><ViewMyToys></ViewMyToys></Private>
       },
       {
         path: "/toy-details/:id",

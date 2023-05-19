@@ -5,11 +5,10 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { FaUserAlt } from "react-icons/fa";
 import ActiveLink from "./ActiveLink";
 import 'react-tooltip/dist/react-tooltip.css';
-import { Tooltip } from 'react-tooltip'
+import { Tooltip } from 'react-tooltip';
 
 const Navbar = () => {
     const {user, logOut} = useContext(AuthContext);
-    console.log(user);
 
     const logOutUser = ()=>{
         logOut()
@@ -25,7 +24,7 @@ const Navbar = () => {
         {
             user?
             <>  
-                <li><ActiveLink to="/view-toys">My Toys</ActiveLink></li>
+                <li><ActiveLink to="/my-toys">My Toys</ActiveLink></li>
                 <li><ActiveLink to="/add-toys">Add A Toy</ActiveLink></li>
             </> : ""
         }
