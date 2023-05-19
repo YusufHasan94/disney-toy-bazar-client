@@ -5,7 +5,7 @@ import ReviewCard from './ReviewCard';
 const CustomerReview = () => {
     const [reviews, setReviews] = useState([]);
     useEffect(()=>{
-        fetch("http://localhost:5000/review")
+        fetch("https://disney-toy-bazar-server.vercel.app/reviews")
         .then(res => res.json())
         .then(data =>setReviews(data))
     },[])
@@ -17,7 +17,7 @@ const CustomerReview = () => {
             <div className='my-6'>
                 <Marquee>
                     {
-                        reviews.map(review => <ReviewCard key={review.id} review={review}></ReviewCard>)
+                        reviews.map(review => <ReviewCard key={review._id} review={review}></ReviewCard>)
                     }
                 </Marquee>
             </div>
