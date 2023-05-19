@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 const AddToy = () => {
     const {user,loading} = useContext(AuthContext);
@@ -20,11 +21,21 @@ const AddToy = () => {
         console.log(newToys);
 
         if(parseFloat(Price)<0 || parseFloat(availableQuantity)<0){
-           console.log("No negative value allowed");
-            return;
+            return Swal.fire({
+                title: 'Negative Value not allowed',
+                text: 'Do you want to continue',
+                icon: 'error',
+                confirmButtonText: 'Try Again'
+              })
         }
         else if(parseFloat(Rating)>5 || parseFloat(Rating)<0){
-            console.log("Rating must lies between 0-5");
+            return  Swal.fire({
+                title: 'Negative Value not allowed',
+                text: 'Do you want to continue',
+                icon: 'error',
+                confirmButtonText: 'Try Again'
+              })
+
         }else{
             fetch("http://localhost:5000/toys",{
                 method: "POST",
@@ -37,7 +48,13 @@ const AddToy = () => {
             .then(data=>{
                 console.log(data);
                 if(data.insertedId){
-                    console.log("success");
+                    // console.log("success");
+                    Swal.fire({
+                        title: 'Congratulations',
+                        text: 'Successfully Inserted data',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                      })
                 }
             })
             .catch(error => console.log(error.message));
