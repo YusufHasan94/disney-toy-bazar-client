@@ -1,9 +1,9 @@
 import React from 'react';
 import { Rating } from '@smastrom/react-rating';
+import { Link } from 'react-router-dom';
 
 const ToysCard = ({card}) => {
     const {Name, Picture, Price, rating} = card;
-    console.log(rating);
     return (
         <div className="card card-compact w-96 bg-base-100 p-2 shadow-xl">
             <figure><img src={Picture} alt="cars" className='h-52' /></figure>
@@ -16,7 +16,9 @@ const ToysCard = ({card}) => {
                     onChange={rating}
                 />
                 <div className="card-actions justify-center">
-                    <button className="btn btn-primary">View Details</button>
+                    <Link to={`/categories/`}>
+                        <button className="btn btn-primary">View Details</button>
+                    </Link>
                 </div>
             </div>
         </div>

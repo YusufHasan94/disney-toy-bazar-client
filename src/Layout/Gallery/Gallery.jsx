@@ -4,7 +4,7 @@ import Marquee from 'react-fast-marquee';
 const Gallery = () => {
     const [images, setImages] = useState([]);
     useEffect(()=>{
-        fetch("http://localhost:5000/images")
+        fetch("https://disney-toy-bazar-server.vercel.app/images")
         .then(res => res.json())
         .then(data => setImages(data))
     },[])

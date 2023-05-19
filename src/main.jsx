@@ -13,6 +13,9 @@ import AuthProvider from './providers/AuthProvider';
 import '@smastrom/react-rating/style.css'
 import NotFound from './Pages/PageNotFound/NotFound';
 import AddToy from './Pages/AddToy/AddToy';
+import Private from './Shared/Route/Private';
+import ToysDetails from './Pages/DetailsModal/ToysDetails';
+import ViewToys from './Pages/ViewToys/ViewToys';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +37,15 @@ const router = createBrowserRouter([
       {
         path: "/add-toys",
         element: <AddToy></AddToy>
+      },
+      {
+        path: "/view-toys",
+        element: <ViewToys></ViewToys>
+      },
+      {
+        path: "/toy-details/:id",
+        element: <Private><ToysDetails></ToysDetails></Private>,
+        loader: ({params})=> fetch(`http://localhost:5000/categories/${params.id}`)
       }
     ]
   },

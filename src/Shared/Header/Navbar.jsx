@@ -25,7 +25,7 @@ const Navbar = () => {
         {
             user?
             <>  
-                <li><ActiveLink to="/my-toys">My Toys</ActiveLink></li>
+                <li><ActiveLink to="/view-toys">My Toys</ActiveLink></li>
                 <li><ActiveLink to="/add-toys">Add A Toy</ActiveLink></li>
             </> : ""
         }
