@@ -18,6 +18,7 @@ import ToysDetails from './Pages/DetailsModal/ToysDetails';
 import ViewToys from './Pages/ViewToys/ViewToys';
 import ViewMyToys from './Pages/ViewMyToys/ViewMyToys';
 import ToyDetails from './Pages/ViewToys/ToyDetails';
+import UpdateAToy from './Pages/UpdateAToy/UpdateAToy';
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,11 @@ const router = createBrowserRouter([
       {
         path: "/my-toys",
         element: <Private><ViewMyToys></ViewMyToys></Private>
+      },
+      {
+        path: "/my-toys/:id",
+        element: <Private><UpdateAToy></UpdateAToy></Private>,
+        loader: ({params}) => fetch(`http://localhost:5000/toys/${params.id}`) 
       },
       {
         path: "/toy-details/:id",

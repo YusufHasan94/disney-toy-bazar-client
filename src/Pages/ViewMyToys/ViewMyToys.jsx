@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaBitbucket, FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ViewMyToys = () => {
     let count = 1;
-    const {user, loading} = useContext(AuthContext);
+    const {user} = useContext(AuthContext);
     const [myToys, setMyToys] = useState([]);
     const url = `http://localhost:5000/my-toys?email=${user?.email}`;
     useEffect(()=>{
@@ -12,22 +14,36 @@ const ViewMyToys = () => {
            fetch(url)
             .then(res=>res.json())
             .then(data=>{
-                setMyToys(data)
+                setMyToys(data);
             })
         }
     }
     ,[])
     
-    const handleUpdateToy = _id =>{
-        console.log(_id);
-    }
     const handleDeleteToy = _id =>{
-        console.log(_id);
-    }
+        const agree  = confirm("Are you want to delete this toys"); 
+        if(agree){
+            fetch(`http://localhost:5000/my-toys/${_id}`,{
+                method: "DELETE"
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data);
+                if(data.deletedCount>0){
+                    Swal.fire({
+                        title: 'Congratulations',
+                        text: 'Successfully deleted toy',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    })
+                    const remaining = myToys.filter(toys=> toys._id !== _id);
+                    setMyToys(remaining);
+                }
+            })
 
-    if(loading){
-        <h1>Loading...</h1>
+        }
     }
+    
     return (
         <div className="my-8">
             <div>
@@ -66,8 +82,10 @@ const ViewMyToys = () => {
                                     <td>{toy.availableQuantity} pec</td>
                                     <td>{toy.detailsDescription}</td>
                                     <td>
-                                        <button><FaEdit onClick={()=>handleUpdateToy(toy._id)} className='text-2xl mr-4'></FaEdit></button>
-                                        <button><FaBitbucket onClick={()=>handleDeleteToy(toy._id)} className='text-2xl mr-4'></FaBitbucket></button>
+                                        <Link to={`/my-toys/${toy._id}`}>
+                                            <button><FaEdit className='text-2xl mr-4'></FaEdit></button>
+                                        </Link>
+                                        <button onClick={()=>handleDeleteToy(toy._id)}><FaBitbucket className='text-2xl mr-4'></FaBitbucket></button>
                                     </td>
                                 </tr>
                             ))}
