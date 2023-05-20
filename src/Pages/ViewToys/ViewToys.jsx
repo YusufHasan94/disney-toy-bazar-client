@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaBitbucket, FaEdit } from 'react-icons/fa';
 
 const ViewToys = () => {
@@ -23,7 +23,7 @@ const ViewToys = () => {
                 <h1 className='text-center text-4xl font-semibold'>View ALL Toys Here!</h1>
             </div>
             <div>
-            <div className="overflow-x-auto">
+                <div className="overflow-x-auto">
                     <table className="table table-zebra w-full my-8">
                         <thead>
                         <tr>
@@ -43,7 +43,7 @@ const ViewToys = () => {
                         </thead>
                         <tbody>
                             {toys.map(toy=>(
-                                <tr className=''>
+                                <tr className='' key={toy._id}>
                                     <td>{count++}</td>
                                     <td>{toy.name}</td>
                                     <td>{toy.sellerName}</td>

@@ -79,13 +79,13 @@ const AddToy = () => {
                         <label className="label">
                             <span className="label-text text-xl">Seller Name</span>
                         </label>
-                        <input type="text" name='sellerName' placeholder="Seller Name" defaultValue={user.displayName} required  className="input input-bordered" />
+                        <input type="text" name='sellerName' placeholder="Seller Name" defaultValue={user?.displayName} required  className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-xl">Seller Email</span>
                         </label>
-                        <input type="email" name='email' placeholder="Email" defaultValue={user.email} required className="input input-bordered" />
+                        <input type="email" name='email' placeholder="Email" defaultValue={user?.email} required className="input input-bordered" />
                     </div>
                     <div className="form-control">
                         <label className="label">

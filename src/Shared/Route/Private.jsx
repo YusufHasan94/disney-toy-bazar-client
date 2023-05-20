@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import { Navigate } from 'react-router-dom';
 
@@ -7,7 +7,7 @@ const Private = ({children}) => {
     if(loading){
         <h1>Loading ...</h1>
     }
-    if(user){
+    if(user?.email){
         return children;
     }
     return <Navigate to="/login" replace={true}></Navigate>;
