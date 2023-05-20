@@ -1,10 +1,12 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 
 const Private = ({children}) => {
     const {user, loading} = useContext(AuthContext);
+    const location = useLocation();
+    console.log(location);
     if(loading){
         return <ThreeDots 
             height="80" 
@@ -20,7 +22,7 @@ const Private = ({children}) => {
     if(user){
         return children;
     }
-    return <Navigate to="/login" replace={false}></Navigate>;
+    return <Navigate state={{from: location}} to="/login" replace></Navigate>;
 };
 
 export default Private;

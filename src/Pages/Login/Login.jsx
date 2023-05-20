@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { ThreeDots } from "react-loader-spinner";
 
@@ -8,6 +8,10 @@ const Login = () => {
     const {loginUser, LoginWithGoogle, loading} = useContext(AuthContext);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
+    const navigate = useNavigate();
+    const location = useLocation();
+    
+    const from = location.state?.from?.pathname || "/";
     if(loading){
         return <ThreeDots 
         height="80" 
@@ -34,6 +38,7 @@ const Login = () => {
             const loggedUser = result.user;
             console.log(loggedUser);
             setSuccess("Successfully Logged In");
+            navigate(from, {replace: true});
         })
         .catch(error => {
             setError(error.message);
@@ -45,6 +50,7 @@ const Login = () => {
         .then(result=>{
             const loggedUser = result.user;
             console.log(loggedUser);
+            navigate(from, {replace: true});
         })
         .catch(error=> console.log(error.message))
     }

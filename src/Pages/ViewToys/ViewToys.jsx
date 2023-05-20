@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { FaBitbucket, FaEdit } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const ViewToys = () => {
     let count = 1;
@@ -11,12 +12,6 @@ const ViewToys = () => {
             setToys(data);
         })
     },[])
-    const handleDeleteToy = (_id)=>{
-        console.log("clicked on delete", _id);
-    }
-    const handleUpdateToy = (_id)=>{
-        console.log("clicked on update", _id);
-    }
     return (
         <div className='my-8'>
             <div>
@@ -28,16 +23,12 @@ const ViewToys = () => {
                         <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
+                            <th>Toy Name</th>
                             <th>Seller Name</th>
-                            <th>Seller Email</th>
-                            <th>Photo</th>
                             <th>Sub-category</th>
-                            <th>Price</th>
-                            <th>Rating</th>
-                            <th>Available Quantity</th>
+                            <th>Price ( $ )</th>
+                            <th>Available Quantity ( unit )</th>
                             <th>Details</th>
-                            <th>Action</th>
 
                         </tr>
                         </thead>
@@ -47,16 +38,13 @@ const ViewToys = () => {
                                     <td>{count++}</td>
                                     <td>{toy.name}</td>
                                     <td>{toy.sellerName}</td>
-                                    <td>{toy.email}</td>
-                                    <td><img src={toy.photoURL} className='w-28' alt="" /></td>
                                     <td>{toy.subCategory}</td>
-                                    <td>{toy.Price} $</td>
-                                    <td>{toy.Rating}/5</td>
-                                    <td>{toy.availableQuantity} pec</td>
-                                    <td>{toy.detailsDescription}</td>
+                                    <td>{toy.Price}</td>
+                                    <td>{toy.availableQuantity}</td>
                                     <td>
-                                        <button><FaEdit onClick={()=>handleUpdateToy(toy._id)} className='text-2xl mr-4'></FaEdit></button>
-                                        <button><FaBitbucket onClick={()=>handleDeleteToy(toy._id)} className='text-2xl mr-4'></FaBitbucket></button>
+                                        <Link to={`/all-toys/${toy._id}`}>
+                                            <button className='btn btn-primary'>View Details</button>
+                                        </Link>
                                     </td>
                                 </tr>
                             ))}
