@@ -43,8 +43,8 @@ const Category = () => {
                                 <TabPanel key={tab._id}>
                                     <div className="grid grid-cols-3 justify-center gap-4 my-6">
                                         {
-                                            tab.subcategories.category.map(card=>(
-                                                <ToysCard  key={tab.id} card={card}></ToysCard>
+                                            tab.subcategories.category.map((card)=>(
+                                                <ToysCard  key={card.id} card={card}></ToysCard>
                                             ))
                                         }
                                     </div>

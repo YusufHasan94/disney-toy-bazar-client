@@ -2,28 +2,17 @@ import { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
-import { ThreeDots } from "react-loader-spinner";
+import loginImg from "../../assets/login.png";
 
 const Login = () => {
-    const {loginUser, LoginWithGoogle, loading} = useContext(AuthContext);
+    const {loginUser, LoginWithGoogle} = useContext(AuthContext);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
     
     const from = location.state?.from?.pathname || "/";
-    if(loading){
-        return <ThreeDots 
-        height="80" 
-        width="80" 
-        radius="9"
-        color="#6a24e2" 
-        ariaLabel="three-dots-loading"
-        wrapperStyle={{}}
-        wrapperClassName=""
-        visible={true}
-    />
-    }
+   
     const handleLogin = event=>{
         event.preventDefault();
         setError("");
@@ -34,9 +23,7 @@ const Login = () => {
         const user = {email, password};
         console.log(user);
         loginUser(email, password)
-        .then(result =>{
-            const loggedUser = result.user;
-            console.log(loggedUser);
+        .then(() =>{
             setSuccess("Successfully Logged In");
             navigate(from, {replace: true});
         })
@@ -56,10 +43,10 @@ const Login = () => {
     }
     return (
         <div className="hero min-h-screen bg-base-200 my-4">
-            <div className="hero-content flex-col md:flex-row">
+            <div className="hero-content flex-col md:flex-row gap-6">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                    <h1 className="text-5xl font-bold text-center mb-8">Login now!</h1>
+                    <img src={loginImg} alt="" />
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body">

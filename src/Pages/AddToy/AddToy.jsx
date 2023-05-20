@@ -47,7 +47,6 @@ const AddToy = () => {
             .then(data=>{
                 console.log(data);
                 if(data.insertedId){
-                    // console.log("success");
                     Swal.fire({
                         title: 'Congratulations',
                         text: 'Successfully Inserted data',
@@ -71,7 +70,7 @@ const AddToy = () => {
                 <form onSubmit={handleAddToy}>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-xl">Name</span>
+                            <span className="label-text text-xl">Toy Name</span>
                         </label>
                         <input type="text" name='name' placeholder="Name" required className="input input-bordered" />
                     </div>

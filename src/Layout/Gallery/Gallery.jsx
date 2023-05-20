@@ -12,7 +12,7 @@ const Gallery = () => {
             setLoading(false);
         })
     },[])
-    console.log(images);
+    
     return (
         <div className='my-8'>
             <div>

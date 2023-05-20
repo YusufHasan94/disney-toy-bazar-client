@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { FaBitbucket, FaEdit } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const ViewToys = () => {
@@ -26,8 +25,8 @@ const ViewToys = () => {
                             <th>Toy Name</th>
                             <th>Seller Name</th>
                             <th>Sub-category</th>
-                            <th>Price ( $ )</th>
-                            <th>Available Quantity ( unit )</th>
+                            <th>Price ($)</th>
+                            <th>Available Quantity (unit)</th>
                             <th>Details</th>
 
                         </tr>

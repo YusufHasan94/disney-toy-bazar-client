@@ -43,7 +43,7 @@ const ViewMyToys = () => {
 
         }
     }
-    
+
     return (
         <div className="my-8">
             <div>
@@ -55,15 +55,15 @@ const ViewMyToys = () => {
                         <thead>
                         <tr>
                             <th></th>
-                            <th>Name</th>
+                            <th>Toy Name</th>
                             <th>Seller Name</th>
                             <th>Seller Email</th>
                             <th>Photo</th>
                             <th>Sub-category</th>
-                            <th>Price</th>
+                            <th>Price ($)</th>
                             <th>Rating</th>
-                            <th>Available Quantity</th>
-                            <th>Details</th>
+                            <th>Available Quantity (unit)</th>
+                            <th>Details</th> 
                             <th>Action</th>
 
                         </tr>
@@ -77,9 +77,9 @@ const ViewMyToys = () => {
                                     <td>{toy.email}</td>
                                     <td><img src={toy.photoURL} className='w-28' alt="" /></td>
                                     <td>{toy.subCategory}</td>
-                                    <td>{toy.Price} $</td>
+                                    <td>{toy.Price}</td>
                                     <td>{toy.Rating}/5</td>
-                                    <td>{toy.availableQuantity} pec</td>
+                                    <td>{toy.availableQuantity}</td>
                                     <td>{toy.detailsDescription}</td>
                                     <td>
                                         <Link to={`/my-toys/${toy._id}`}>

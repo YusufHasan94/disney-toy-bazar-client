@@ -7,17 +7,10 @@ const UpdateAToy = () => {
     const handleAddToy = event =>{
         event.preventDefault();
         const form = event.target;
-        const name = form.name.value;
-        const sellerName = form.sellerName.value;
-        const email = form.email.value;
-        const photoURL = form.photoURL.value;
-        const subCategory = form.subCategory.value;
         const Price = form.Price.value;
-        const Rating = form.Rating.value;
         const availableQuantity = form.availableQuantity.value;
         const detailsDescription = form.detailsDescription.value;
-        const newToys = {name, sellerName, email, photoURL, subCategory, Price, Rating, availableQuantity, detailsDescription};
-        console.log(newToys);
+        const updateData = {Price, availableQuantity, detailsDescription};
 
         if(parseFloat(Price)<0 || parseFloat(availableQuantity)<0){
             return Swal.fire({
@@ -26,31 +19,21 @@ const UpdateAToy = () => {
                 icon: 'error',
                 confirmButtonText: 'Try Again'
               })
-        }
-        else if(parseFloat(Rating)>5 || parseFloat(Rating)<0){
-            return  Swal.fire({
-                title: 'Negative Value not allowed',
-                text: 'Do you want to continue',
-                icon: 'error',
-                confirmButtonText: 'Try Again'
-              })
-
         }else{
-            fetch("http://localhost:5000/my-toys",{
-                method: "POST",
+            fetch(`http://localhost:5000/my-toys/${toy._id}`,{
+                method: "PATCH",
                 headers: {
                     'content-type':'application/json'
                 },
-                body: JSON.stringify(newToys)
+                body: JSON.stringify(updateData)
             })
             .then(res=> res.json())
             .then(data=>{
                 console.log(data);
-                if(data.insertedId){
-                    // console.log("success");
+                if(data.modifiedCount>0){
                     Swal.fire({
                         title: 'Congratulations',
-                        text: 'Successfully Inserted data',
+                        text: 'Successfully Updated data',
                         icon: 'success',
                         confirmButtonText: 'OK'
                       })

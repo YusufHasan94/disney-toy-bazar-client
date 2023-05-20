@@ -2,6 +2,9 @@ import { Rating } from '@smastrom/react-rating';
 import { Link } from 'react-router-dom';
 
 const ToysCard = ({card}) => {
+    const handleDetails = event=>{
+        console.log(event.target);
+    }
     const {Name, Picture, Price, rating} = card;
     return (
         <div className="card card-compact w-96 bg-base-100 p-2 shadow-xl">
@@ -16,7 +19,7 @@ const ToysCard = ({card}) => {
                 />
                 <div className="card-actions justify-center">
                     <Link to={`/categories/`}>
-                        <button className="btn btn-primary">View Details</button>
+                        <button className="btn btn-primary" onClick={()=>handleDetails(card._id)}>View Details</button>
                     </Link>
                 </div>
             </div>
