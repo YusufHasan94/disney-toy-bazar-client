@@ -1,4 +1,3 @@
-import React from 'react';
 import { Rating } from '@smastrom/react-rating';
 import { Link } from 'react-router-dom';
 
@@ -12,8 +11,8 @@ const ToysCard = ({card}) => {
                 <p className='text-start text-xl'>Price: {Price}</p>
                 <Rating
                     style={{ maxWidth: 100 }}
-                    value={rating}
-                    onChange={rating}
+                    value={parseFloat(rating)}
+                    onChange={parseFloat(rating)}
                 />
                 <div className="card-actions justify-center">
                     <Link to={`/categories/`}>
