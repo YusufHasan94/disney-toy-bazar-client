@@ -7,7 +7,7 @@ const Category = () => {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(()=>{
-        fetch("http://localhost:5000/categories")
+        fetch("https://disney-toy-bazar-server.vercel.app/categories")
         .then(res => res.json())
         .then(data => {
             setCategories(data);
@@ -42,10 +42,10 @@ const Category = () => {
                             categories.map(category=>(
                                 <TabPanel key={category._id}>
                                     {
-                                        <div className='grid grid-cols-3 gap-4 my-4'>
+                                        <div className='grid grid-cols-1 md:grid-cols-3 gap-4 my-4'>
                                             {
                                                 category.subcategories.map(subcategory=>(
-                                                    <ToysCard key={subcategory.id} subcategory={subcategory} Cid={category._id}></ToysCard>
+                                                    <ToysCard key={subcategory.id} subcategory={subcategory} C_id={category._id}></ToysCard>
                                                 ))
                                             }
                                         </div>

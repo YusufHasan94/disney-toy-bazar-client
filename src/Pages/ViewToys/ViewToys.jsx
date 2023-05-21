@@ -1,12 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../providers/AuthProvider';
+import Swal from 'sweetalert2';
+import dynamicTitle from '../../hook/dynamicTitle';
 
 const ViewToys = () => {
+    dynamicTitle('All Toys');
     let count = 1;
     let limit = 20;
+    const {user} = useContext(AuthContext);
     const [toys, setToys] = useState([]);
     useEffect(()=>{
-        fetch(`http://localhost:5000/toys?limit=${limit}`)
+        fetch(`https://disney-toy-bazar-server.vercel.app/toys?limit=${limit}`)
         .then(res => res.json())
         .then(data => {
             setToys(data);
@@ -22,12 +27,22 @@ const ViewToys = () => {
             setToys(remaining);
         }      
     }
+    const handleNotify = ()=>{
+        if(!user){
+            Swal.fire({
+                title: 'Not a valid user',
+                text: 'You need to login first',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+              })
+        }
+    }
     return (
         <div className='my-8'>
             <div>
                 <h1 className='text-center text-4xl font-semibold'>View ALL Toys Here!</h1>
             </div>
-            <div className='flex items-center justify-between'>
+            <div className='flex flex-col md:flex-row gap-4 my-4 items-center justify-between'>
                 <div className='flex flex-col gap-2'>
                     <label className='font-semibold text-xl' >Search Using toy name</label>
                     <form className='flex ' onSubmit={handleSearch}>
@@ -35,7 +50,7 @@ const ViewToys = () => {
                         <input type="submit"  value="Search" className='btn btn-primary ms-4'/>
                     </form>
                 </div>
-                <div>
+                <div className='text-center'>
                     <form ></form>
                     <label className='text-xl font-semibold'>Pick Your limit</label>
                     <select name="limit" className="select w-full max-w-xs bg-slate-100 border-1 border-black">
@@ -69,7 +84,7 @@ const ViewToys = () => {
                                     <td>{toy.availableQuantity}</td>
                                     <td>
                                         <Link to={`/all-toys/${toy._id}`}>
-                                            <button className='btn btn-primary'>View Details</button>
+                                            <button className='btn btn-primary' onClick={handleNotify}>View Details</button>
                                         </Link>
                                     </td>
                                 </tr>

@@ -20,7 +20,7 @@ const UpdateAToy = () => {
                 confirmButtonText: 'Try Again'
               })
         }else{
-            fetch(`http://localhost:5000/my-toys/${toy._id}`,{
+            fetch(`https://disney-toy-bazar-server.vercel.app/my-toys/${toy._id}`,{
                 method: "PATCH",
                 headers: {
                     'content-type':'application/json'
@@ -57,13 +57,13 @@ const UpdateAToy = () => {
                     <form onSubmit={handleAddToy}>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text text-xl">Price</span>
+                                <span className="label-text text-xl">Price ($)</span>
                             </label>
                             <input type="number" name='Price' placeholder="Price" defaultValue={toy.Price} required className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text text-xl">Available Quantity</span>
+                                <span className="label-text text-xl">Available Quantity (Unit)</span>
                             </label>
                             <input type="number" name='availableQuantity' placeholder="Available Quantity" defaultValue={toy.availableQuantity} required className="input input-bordered" />
                         </div>

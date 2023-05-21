@@ -19,6 +19,7 @@ import ViewMyToys from './Pages/ViewMyToys/ViewMyToys';
 import ToyDetails from './Pages/ViewToys/ToyDetails';
 import UpdateAToy from './Pages/UpdateAToy/UpdateAToy';
 import Blogs from './Pages/Blogs/Blogs';
+import ViewSubcategoryToys from './Pages/ViewSubcategoryToys/ViewSubcategoryToys';
 
 const router = createBrowserRouter([
   {
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
       {
         path: "/all-toys/:id",
         element: <Private><ToyDetails></ToyDetails></Private>,
-        loader: ({params})=> fetch(`http://localhost:5000/toys/${params.id}`)
+        loader: ({params})=> fetch(`https://disney-toy-bazar-server.vercel.app/toys/${params.id}`)
       },
       {
         path: "/add-toys",
@@ -57,12 +58,16 @@ const router = createBrowserRouter([
       {
         path: "/my-toys/:id",
         element: <Private><UpdateAToy></UpdateAToy></Private>,
-        loader: ({params}) => fetch(`http://localhost:5000/toys/${params.id}`) 
+        loader: ({params}) => fetch(`https://disney-toy-bazar-server.vercel.app/toys/${params.id}`) 
       },
       {
         path: "/blogs",
         element: <Blogs></Blogs>
-      }
+      },
+      {
+        path: "/subcategory",
+        element: <Private><ViewSubcategoryToys></ViewSubcategoryToys></Private>
+      } 
     ]
   },
   {

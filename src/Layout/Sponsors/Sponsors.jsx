@@ -5,7 +5,7 @@ const Sponsors = () => {
     const [sponsors, setSponsors] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(()=>{
-        fetch("http://localhost:5000/sponsors")
+        fetch("https://disney-toy-bazar-server.vercel.app/sponsors")
         .then(res => res.json())
         .then(data => {
             setSponsors(data);
@@ -17,7 +17,7 @@ const Sponsors = () => {
             <div className='text-center'>
                 <h1 className='text-4xl font-semibold'>Our Trusted Sponsors</h1>
             </div>
-            <div className='flex justify-center gap-10 my-10'>
+            <div className='flex justify-center gap-5 md:gap-10 my-10'>
                 {
                     loading?
                     <ThreeDots 

@@ -3,12 +3,14 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { FaBitbucket, FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import dynamicTitle from "../../hook/dynamicTitle";
 
 const ViewMyToys = () => {
+    dynamicTitle('My Toys');
     let count = 1;
     const {user} = useContext(AuthContext);
     const [myToys, setMyToys] = useState([]);
-    const url = `http://localhost:5000/my-toys?email=${user?.email}`;
+    const url = `https://disney-toy-bazar-server.vercel.app/my-toys?email=${user?.email}`;
     useEffect(()=>{
         if(user?.email){
            fetch(url)
@@ -23,7 +25,7 @@ const ViewMyToys = () => {
     const handleDeleteToy = _id =>{
         const agree  = confirm("Are you want to delete this toys"); 
         if(agree){
-            fetch(`http://localhost:5000/my-toys/${_id}`,{
+            fetch(`https://disney-toy-bazar-server.vercel.app/my-toys/${_id}`,{
                 method: "DELETE"
             })
             .then(res=>res.json())

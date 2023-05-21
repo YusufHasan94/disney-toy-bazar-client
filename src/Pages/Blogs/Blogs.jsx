@@ -1,6 +1,8 @@
+import dynamicTitle from "../../hook/dynamicTitle";
 
 
 const Blogs = () => {
+    dynamicTitle('Blogs');
     return (
         <div className='my-8'>
             <div className='text-center'>

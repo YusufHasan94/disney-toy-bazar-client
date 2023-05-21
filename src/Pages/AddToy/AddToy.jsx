@@ -1,8 +1,10 @@
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import dynamicTitle from '../../hook/dynamicTitle';
 
 const AddToy = () => {
+    dynamicTitle('Add Toys');
     const {user} = useContext(AuthContext);
     const handleAddToy = event =>{
         event.preventDefault();
@@ -97,14 +99,14 @@ const AddToy = () => {
                             <span className="label-text text-xl">Sub-category</span>
                         </label>
                         <select name="subCategory" id="" className='input input-bordered'>
-                            <option value="Fire Truck">Fire Truck</option>
-                            <option value="Fire Truck">Racing Car</option>
-                            <option value="Fire Truck">Ambulance</option>
+                            <option value="Car">Car</option>
+                            <option value="Fire Car">Fire Car</option>
+                            <option value="Truck">Truck</option>
                         </select>
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-xl">Price</span>
+                            <span className="label-text text-xl">Price ($)</span>
                         </label>
                         <input type="number" name='Price' placeholder="Price" required className="input input-bordered" />
                     </div>
@@ -116,7 +118,7 @@ const AddToy = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text text-xl">Available Quantity</span>
+                            <span className="label-text text-xl">Available Quantity (unit)</span>
                         </label>
                         <input type="number" name='availableQuantity' placeholder="Available Quantity" required className="input input-bordered" />
                     </div>

@@ -2,8 +2,10 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { Link } from "react-router-dom";
 import registrationImg  from "../../assets/registration.png";
+import dynamicTitle from "../../hook/dynamicTitle";
 
 const Registration = () => {
+    dynamicTitle('Registration');
     const {createUser, updateUserInfo, logOut} = useContext(AuthContext);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
