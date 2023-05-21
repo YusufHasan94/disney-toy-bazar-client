@@ -14,11 +14,11 @@ import '@smastrom/react-rating/style.css'
 import NotFound from './Pages/PageNotFound/NotFound';
 import AddToy from './Pages/AddToy/AddToy';
 import Private from './Shared/Route/Private';
-import ToysDetails from './Pages/DetailsModal/ToysDetails';
 import ViewToys from './Pages/ViewToys/ViewToys';
 import ViewMyToys from './Pages/ViewMyToys/ViewMyToys';
 import ToyDetails from './Pages/ViewToys/ToyDetails';
 import UpdateAToy from './Pages/UpdateAToy/UpdateAToy';
+import Blogs from './Pages/Blogs/Blogs';
 
 const router = createBrowserRouter([
   {
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
       {
         path: "/all-toys/:id",
         element: <Private><ToyDetails></ToyDetails></Private>,
-        loader: ({params})=> fetch(`http://localhost:5000/toys/${params.id}`)
+        loader: ({params})=> fetch(`https://disney-toy-bazar-server.vercel.app/toys/${params.id}`)
       },
       {
         path: "/add-toys",
@@ -57,12 +57,11 @@ const router = createBrowserRouter([
       {
         path: "/my-toys/:id",
         element: <Private><UpdateAToy></UpdateAToy></Private>,
-        loader: ({params}) => fetch(`http://localhost:5000/toys/${params.id}`) 
+        loader: ({params}) => fetch(`https://disney-toy-bazar-server.vercel.app/toys/${params.id}`) 
       },
       {
-        path: "/toy-details/:id",
-        element: <Private><ToysDetails></ToysDetails></Private>,
-        loader: ({params})=> fetch(`http://localhost:5000/categories/${params.id}`)
+        path: "/blogs",
+        element: <Blogs></Blogs>
       }
     ]
   },

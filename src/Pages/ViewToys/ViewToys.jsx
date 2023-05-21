@@ -5,7 +5,7 @@ const ViewToys = () => {
     let count = 1;
     const [toys, setToys] = useState([]);
     useEffect(()=>{
-        fetch("http://localhost:5000/toys")
+        fetch("https://disney-toy-bazar-server.vercel.app/toys")
         .then(res => res.json())
         .then(data => {
             setToys(data);
@@ -15,6 +15,23 @@ const ViewToys = () => {
         <div className='my-8'>
             <div>
                 <h1 className='text-center text-4xl font-semibold'>View ALL Toys Here!</h1>
+            </div>
+            <div className='flex items-center justify-between'>
+                <div className='flex flex-col gap-2'>
+                    <label className='font-semibold text-xl' >Search Using toy name</label>
+                    <form className='flex '>
+                        <input type="text" placeholder="Toys Name" className="input input-bordered input-primary w-full max-w-xs" />
+                        <input type="submit"  value="Search" className='btn btn-primary ms-4'/>
+                    </form>
+                </div>
+                <div>
+                    <label className='text-xl font-semibold'>Pick Your limit</label>
+                    <select className="select w-full max-w-xs bg-slate-100 border-1 border-black">
+                        <option>10</option>
+                        <option>20</option>
+                        <option>30</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <div className="overflow-x-auto">

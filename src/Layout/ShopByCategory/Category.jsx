@@ -7,7 +7,7 @@ const Category = () => {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(()=>{
-        fetch("http://localhost:5000/categories")
+        fetch("https://disney-toy-bazar-server.vercel.app/categories")
         .then(res => res.json())
         .then(data => {
             setCategories(data);
@@ -34,20 +34,22 @@ const Category = () => {
                     />:
                     <Tabs className="text-xl font-semibold text-center p-4"> 
                         <TabList >
-                            {categories.map(tab => (
-                                <Tab key={tab._id}>{tab.tab_title}</Tab>
+                            {categories.map(category => (
+                                <Tab key={category._id}>{category.title}</Tab>
                             ))}    
                         </TabList>
                         {
-                            categories.map(tab=>(
-                                <TabPanel key={tab._id}>
-                                    <div className="grid grid-cols-3 justify-center gap-4 my-6">
-                                        {
-                                            tab.subcategories.category.map((card)=>(
-                                                <ToysCard  key={card.id} card={card}></ToysCard>
-                                            ))
-                                        }
-                                    </div>
+                            categories.map(category=>(
+                                <TabPanel key={category._id}>
+                                    {
+                                        <div className='grid grid-cols-3 gap-4 my-4'>
+                                            {
+                                                category.subcategories.map(subcategory=>(
+                                                    <ToysCard key={subcategory.id} subcategory={subcategory} Cid={category._id}></ToysCard>
+                                                ))
+                                            }
+                                        </div>
+                                    }
                                 </TabPanel>
                             ))
                         }

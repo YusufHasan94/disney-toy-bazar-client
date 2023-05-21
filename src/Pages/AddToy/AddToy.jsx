@@ -36,7 +36,7 @@ const AddToy = () => {
               })
 
         }else{
-            fetch("http://localhost:5000/toys",{
+            fetch("https://disney-toy-bazar-server.vercel.app/toys",{
                 method: "POST",
                 headers: {
                     'content-type':'application/json'
