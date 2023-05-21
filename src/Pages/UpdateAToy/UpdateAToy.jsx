@@ -20,7 +20,7 @@ const UpdateAToy = () => {
                 confirmButtonText: 'Try Again'
               })
         }else{
-            fetch(`https://disney-toy-bazar-server.vercel.app/my-toys/${toy._id}`,{
+            fetch(`http://localhost:5000/my-toys/${toy._id}`,{
                 method: "PATCH",
                 headers: {
                     'content-type':'application/json'

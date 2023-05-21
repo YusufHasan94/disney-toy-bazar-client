@@ -7,7 +7,7 @@ const CustomerReview = () => {
     const [reviews, setReviews] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(()=>{
-        fetch("https://disney-toy-bazar-server.vercel.app/reviews")
+        fetch("http://localhost:5000/reviews")
         .then(res => res.json())
         .then(data =>{
             setReviews(data);

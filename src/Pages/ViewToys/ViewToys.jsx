@@ -3,14 +3,25 @@ import { Link } from 'react-router-dom';
 
 const ViewToys = () => {
     let count = 1;
+    let limit = 20;
     const [toys, setToys] = useState([]);
     useEffect(()=>{
-        fetch("https://disney-toy-bazar-server.vercel.app/toys")
+        fetch(`http://localhost:5000/toys?limit=${limit}`)
         .then(res => res.json())
         .then(data => {
             setToys(data);
         })
     },[])
+
+    const handleSearch = event =>{
+        event.preventDefault();
+        const form = event.target;
+        const searchedItem = form.searchedItem.value;
+        if(searchedItem){
+            const remaining = toys.filter(select => select.name == searchedItem);
+            setToys(remaining);
+        }      
+    }
     return (
         <div className='my-8'>
             <div>
@@ -19,17 +30,16 @@ const ViewToys = () => {
             <div className='flex items-center justify-between'>
                 <div className='flex flex-col gap-2'>
                     <label className='font-semibold text-xl' >Search Using toy name</label>
-                    <form className='flex '>
-                        <input type="text" placeholder="Toys Name" className="input input-bordered input-primary w-full max-w-xs" />
+                    <form className='flex ' onSubmit={handleSearch}>
+                        <input type="text" placeholder="Toys Name" name='searchedItem' className="input input-bordered input-primary w-full max-w-xs" />
                         <input type="submit"  value="Search" className='btn btn-primary ms-4'/>
                     </form>
                 </div>
                 <div>
+                    <form ></form>
                     <label className='text-xl font-semibold'>Pick Your limit</label>
-                    <select className="select w-full max-w-xs bg-slate-100 border-1 border-black">
-                        <option>10</option>
-                        <option>20</option>
-                        <option>30</option>
+                    <select name="limit" className="select w-full max-w-xs bg-slate-100 border-1 border-black">
+                        <option value={limit}>{limit}</option>
                     </select>
                 </div>
             </div>

@@ -5,7 +5,7 @@ const Sponsors = () => {
     const [sponsors, setSponsors] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(()=>{
-        fetch("https://disney-toy-bazar-server.vercel.app/sponsors")
+        fetch("http://localhost:5000/sponsors")
         .then(res => res.json())
         .then(data => {
             setSponsors(data);

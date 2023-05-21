@@ -6,7 +6,7 @@ const Blogs = () => {
             <div className='text-center'>
                 <h1 className='text-4xl my-4 font-semibold'>Blogs Are Here</h1>
             </div>
-            <div className='md:mx-8 mx-4 flex flex-col gap-4'>
+            <div className='md:mx-8 mx-4 flex flex-col gap-4np'>
                 <div>
                     <h1 className="text-xl font-semibold">1. What is an access token and refresh token? How do they work and where should we store them on the client-side?</h1>
                     <p>An access token is a credential that is issued to a client by an authentication server after the client successfully authenticates itself<br />A refresh token is also issued alongside the access token. Its purpose is to obtain a new access token when the current one expires. Unlike access tokens, refresh tokens are long-lived and can be used to request new access tokens without re-authenticating the client.<br />To store these tokens on the client-side there use HTTP-only cookies or local storage. Http cookies is more secure then local storage, but both are not much secure.</p>

@@ -10,7 +10,7 @@ const ToysCard = ({subcategory, Cid}) => {
     const [filterData, setFilterData] = useState([]);
     const {user} = useContext(AuthContext);
     useEffect(()=>{
-        fetch(`http://localhost:5000/categories/${Cid}`)
+        fetch(`http://localhost:5000/${Cid}`)
         .then(res=>res.json())
         .then(data=>{
             setSubcategoryData(data);

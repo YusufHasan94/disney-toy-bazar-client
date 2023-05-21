@@ -7,7 +7,7 @@ const Category = () => {
     const [categories, setCategories] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(()=>{
-        fetch("https://disney-toy-bazar-server.vercel.app/categories")
+        fetch("http://localhost:5000/categories")
         .then(res => res.json())
         .then(data => {
             setCategories(data);

@@ -44,7 +44,7 @@ const router = createBrowserRouter([
       {
         path: "/all-toys/:id",
         element: <Private><ToyDetails></ToyDetails></Private>,
-        loader: ({params})=> fetch(`https://disney-toy-bazar-server.vercel.app/toys/${params.id}`)
+        loader: ({params})=> fetch(`http://localhost:5000/toys/${params.id}`)
       },
       {
         path: "/add-toys",
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
       {
         path: "/my-toys/:id",
         element: <Private><UpdateAToy></UpdateAToy></Private>,
-        loader: ({params}) => fetch(`https://disney-toy-bazar-server.vercel.app/toys/${params.id}`) 
+        loader: ({params}) => fetch(`http://localhost:5000/toys/${params.id}`) 
       },
       {
         path: "/blogs",

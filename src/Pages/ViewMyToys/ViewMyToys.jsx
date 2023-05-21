@@ -8,7 +8,7 @@ const ViewMyToys = () => {
     let count = 1;
     const {user} = useContext(AuthContext);
     const [myToys, setMyToys] = useState([]);
-    const url = `https://disney-toy-bazar-server.vercel.app/my-toys?email=${user?.email}`;
+    const url = `http://localhost:5000/my-toys?email=${user?.email}`;
     useEffect(()=>{
         if(user?.email){
            fetch(url)
@@ -23,7 +23,7 @@ const ViewMyToys = () => {
     const handleDeleteToy = _id =>{
         const agree  = confirm("Are you want to delete this toys"); 
         if(agree){
-            fetch(`https://disney-toy-bazar-server.vercel.app/my-toys/${_id}`,{
+            fetch(`http://localhost:5000/my-toys/${_id}`,{
                 method: "DELETE"
             })
             .then(res=>res.json())
