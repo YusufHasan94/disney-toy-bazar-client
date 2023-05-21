@@ -100,7 +100,7 @@ const AddToy = () => {
                         </label>
                         <select name="subCategory" id="" className='input input-bordered'>
                             <option value="Car">Car</option>
-                            <option value="Fire Car">Fire Car</option>
+                            <option value="Fire Car">Fire_Car</option>
                             <option value="Truck">Truck</option>
                         </select>
                     </div>

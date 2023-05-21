@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ThreeDots } from 'react-loader-spinner';
+<link rel="stylesheet" href="bower_components/aos/dist/aos.css" />
+import AOS from 'aos';
 
 const Gallery = () => {
     const [images, setImages] = useState([]);
@@ -12,6 +14,9 @@ const Gallery = () => {
             setLoading(false);
         })
     },[])
+    useEffect(() => {
+        AOS.init();
+      }, []);
     
     return (
         <div className='my-8'>
@@ -31,7 +36,7 @@ const Gallery = () => {
                         wrapperClassName=""
                         visible={true}
                     />:
-                    <div className='grid grid-cols-3 gap-2 justify-items-center items-center my-8 px-5'>
+                    <div className='grid grid-cols-3 gap-2 justify-items-center items-center my-8 px-5' data-aos="flip-left" data-aos-delay="100">
                         {images.map(image=> <img src={image.images} key={image._id} alt="" className='w-60'/> )}
                     </div>
                 }

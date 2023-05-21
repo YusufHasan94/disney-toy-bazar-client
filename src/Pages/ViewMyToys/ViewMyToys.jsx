@@ -52,7 +52,7 @@ const ViewMyToys = () => {
                 <h1 className="text-center text-4xl font-semibold">All Toys Added by {user.displayName}</h1>
             </div>
             <div>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-scroll">
                     <table className="table table-zebra w-full my-8">
                         <thead>
                         <tr>

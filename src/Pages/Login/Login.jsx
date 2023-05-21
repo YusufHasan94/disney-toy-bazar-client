@@ -3,8 +3,10 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import loginImg from "../../assets/login.png";
+import dynamicTitle from "../../hook/dynamicTitle";
 
 const Login = () => {
+    dynamicTitle('Login');
     const {loginUser, LoginWithGoogle} = useContext(AuthContext);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
