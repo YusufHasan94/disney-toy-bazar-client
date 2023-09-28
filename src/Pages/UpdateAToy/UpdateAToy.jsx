@@ -46,7 +46,7 @@ const UpdateAToy = () => {
         
     }
     return (
-        <div className='my-8'> 
+        <div className='py-32'> 
             <div className='flex flex-col items-center p-4 text-4xl font-semibold'>
                 <h1 className='mb-4'>Update Information About</h1>
                 <img src={toy.photoURL} className='w-96' alt="" />

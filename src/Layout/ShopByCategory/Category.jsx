@@ -33,9 +33,9 @@ const Category = () => {
                         visible={true}
                     />:
                     <Tabs className="text-xl font-semibold text-center p-4"> 
-                        <TabList >
+                        <TabList  className="border-0 flex justify-center gap-5">
                             {categories.map(category => (
-                                <Tab key={category._id}>{category.title}</Tab>
+                                <Tab key={category._id} className="border-4 border-violet-300 px-5 py-2 rounded-xl aria-selected:rounded-xl aria-selected:border-violet-700">{category.title}</Tab>
                             ))}    
                         </TabList>
                         {

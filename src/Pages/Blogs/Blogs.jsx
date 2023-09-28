@@ -4,7 +4,7 @@ import dynamicTitle from "../../hook/dynamicTitle";
 const Blogs = () => {
     dynamicTitle('Blogs');
     return (
-        <div className='my-8'>
+        <div className='py-20'>
             <div className='text-center'>
                 <h1 className='text-4xl my-4 font-semibold'>Blogs Are Here</h1>
             </div>

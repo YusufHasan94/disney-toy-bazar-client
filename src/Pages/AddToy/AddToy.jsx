@@ -64,7 +64,7 @@ const AddToy = () => {
         
     }
     return (
-        <div className='my-8'>
+        <div className='py-24'>
             <div>
                 <h1 className='text-center text-4xl font-semibold'>Add Beautiful Toys Here</h1>
             </div>

@@ -6,39 +6,40 @@ import dynamicTitle from '../../hook/dynamicTitle';
 
 const ViewToys = () => {
     dynamicTitle('All Toys');
-    let count = 1;
     let limit = 20;
-    const {user} = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
     const [toys, setToys] = useState([]);
-    useEffect(()=>{
+    useEffect(() => {
         fetch(`https://disney-toy-bazar-server.vercel.app/toys?limit=${limit}`)
-        .then(res => res.json())
-        .then(data => {
-            setToys(data);
-        })
-    },[])
+            .then(res => res.json())
+            .then(data => {
+                setToys(data);
+            })
+    }, [])
 
-    const handleSearch = event =>{
+    console.log(toys);
+
+    const handleSearch = event => {
         event.preventDefault();
         const form = event.target;
         const searchedItem = form.searchedItem.value;
-        if(searchedItem){
+        if (searchedItem) {
             const remaining = toys.filter(select => select.name == searchedItem);
             setToys(remaining);
-        }      
+        }
     }
-    const handleNotify = ()=>{
-        if(!user){
+    const handleNotify = () => {
+        if (!user) {
             Swal.fire({
                 title: 'Not a valid user',
                 text: 'You need to login first',
                 icon: 'warning',
                 confirmButtonText: 'OK'
-              })
+            })
         }
     }
     return (
-        <div className='my-8'>
+        <div className='py-32 max-w-screen-xl mx-auto'>
             <div>
                 <h1 className='text-center text-4xl font-semibold'>View ALL Toys Here!</h1>
             </div>
@@ -47,7 +48,7 @@ const ViewToys = () => {
                     <label className='font-semibold text-xl' >Search Using toy name</label>
                     <form className='flex ' onSubmit={handleSearch}>
                         <input type="text" placeholder="Toys Name" name='searchedItem' className="input input-bordered input-primary w-full max-w-xs" />
-                        <input type="submit"  value="Search" className='btn btn-primary ms-4'/>
+                        <input type="submit" value="Search" className='btn btn-primary ms-4' />
                     </form>
                 </div>
                 <div className='text-center'>
@@ -58,39 +59,28 @@ const ViewToys = () => {
                     </select>
                 </div>
             </div>
-            <div>
-                <div className="overflow-x-auto">
-                    <table className="table table-zebra w-full my-8">
-                        <thead>
-                        <tr>
-                            <th></th>
-                            <th>Toy Name</th>
-                            <th>Seller Name</th>
-                            <th>Sub-category</th>
-                            <th>Price ($)</th>
-                            <th>Available Quantity (unit)</th>
-                            <th>Details</th>
+            <div className='my-10'>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mx-5 md:mx-0">
+                    {toys.map(toy => (
+                        <div key={toy._id}>
+                            <div className='card shadow-2xl'>
+                                <figure>
+                                    <img src={toy.photoURL} alt="" className='h-60 w-full' />
+                                </figure>
+                                <div className='card-body'>
+                                    <h1 className='font-semibold text-xl'>Toy Name: {toy.name}</h1>
+                                    <h1>Seller Name: {toy.sellerName}</h1>
+                                    <h1>Seller Email: {toy.email}</h1>
+                                </div>
+                                <div className='mx-auto mb-5'>
+                                    <Link to={`/all-toys/${toy._id}`}>
+                                        <button className='btn btn-primary' onClick={handleNotify}>View Details</button>
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
 
-                        </tr>
-                        </thead>
-                        <tbody>
-                            {toys.map(toy=>(
-                                <tr className='' key={toy._id}>
-                                    <td>{count++}</td>
-                                    <td>{toy.name}</td>
-                                    <td>{toy.sellerName}</td>
-                                    <td>{toy.subCategory}</td>
-                                    <td>{toy.Price}</td>
-                                    <td>{toy.availableQuantity}</td>
-                                    <td>
-                                        <Link to={`/all-toys/${toy._id}`}>
-                                            <button className='btn btn-primary' onClick={handleNotify}>View Details</button>
-                                        </Link>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    ))}
                 </div>
             </div>
         </div>

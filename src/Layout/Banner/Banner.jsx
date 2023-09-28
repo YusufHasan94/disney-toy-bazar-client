@@ -2,8 +2,8 @@ import banner from "../../assets/banner.png";
 import banner2 from "../../assets/banner2.png";
 const Banner = () => {
     return (
-        <div className="carousel w-full my-10 rounded-xl">
-            <div id="slide1" className="py-4 bg-gradient-to-r from-indigo-500 to-purple-500  carousel-item relative w-full">
+        <div className="carousel w-full">
+            <div id="slide1" className="py-32 bg-gradient-to-r from-indigo-500 to-purple-500  carousel-item relative w-full">
                 <div className="w-full flex flex-col md:flex-row justify-center items-center md:mx-24">
                     <div className="w-full md:w-1/2 flex justify-center items-center ">
                         <div className="text-white p-8">
