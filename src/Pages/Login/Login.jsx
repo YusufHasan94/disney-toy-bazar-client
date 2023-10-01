@@ -44,7 +44,7 @@ const Login = () => {
         .catch(error=> console.log(error.message))
     }
     return (
-        <div className="hero min-h-screen bg-base-200 my-4">
+        <div className="hero min-h-screen bg-base-200 py-10">
             <div className="hero-content flex-col md:flex-row gap-6">
                 <div className="text-center lg:text-left">
                     <h1 className="text-5xl font-bold text-center mb-8">Login now!</h1>
